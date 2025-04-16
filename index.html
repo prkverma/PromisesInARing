@@ -7,8 +7,9 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap');
-        
+        /* @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap'); */
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&family=Great+Vibes&family=Pacifico&display=swap');
+
         * {
             margin: 0;
             padding: 0;
@@ -39,9 +40,25 @@
             perspective: 1500px;
             width: 100%;
             max-width: 600px;
-            height: 560px;
+            height: 630px;
             margin: 0 auto;
         }
+        .watermark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* background-image: url('https://img.freepik.com/free-vector/tropical-flower-pattern_1409-11099.jpg?t=st=1744814191~exp=1744817791~hmac=0905b6be70aa9cb3b49c1b4772c661d44b344c5ed9848a74635f1bc1b367c30f&w=1800'); */
+    background-image: url('https://img.freepik.com/free-vector/luxurious-peony-wallapaper-wintage-style-vector-illustration_1182-2374.jpg?t=st=1744816588~exp=1744820188~hmac=938549ca794b7ebb47adbb3fa6a8cbcad20bd0f408b011eb053ea8474cb85f10&w=1380');
+
+    background-size: cover;
+    background-position: center;
+    opacity: 0.1;
+    z-index: 0;
+    pointer-events: none;
+}
+        
         
         .invitation-card {
             width: 100%;
@@ -87,6 +104,25 @@
             background: #fff;
             z-index: 1; /* Ensure proper stacking */
         }
+        .card-front::before, .card-back::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* background-image: url('https://img.freepik.com/free-vector/tropical-flower-pattern_1409-11099.jpg?t=st=1744814191~exp=1744817791~hmac=0905b6be70aa9cb3b49c1b4772c661d44b344c5ed9848a74635f1bc1b367c30f&w=1800'); */
+    background-image: url('https://img.freepik.com/free-vector/luxurious-peony-wallapaper-wintage-style-vector-illustration_1182-2374.jpg?t=st=1744816588~exp=1744820188~hmac=938549ca794b7ebb47adbb3fa6a8cbcad20bd0f408b011eb053ea8474cb85f10&w=1380');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.1;
+    z-index: 0;
+    pointer-events: none;
+}
+.content, .decorative-border, .decorative-corner, .floral-decoration, .pattern-overlay, .monogram, .card-footer {
+    position: relative;
+    z-index: 1;
+}
         
         .content {
             position: relative;
@@ -121,11 +157,11 @@
         }
         
         .invitation-text {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.2rem;
+            font-family: 'Great Vibes', cursive;
+            font-size: 1.6rem;
             margin-bottom: 1.5rem;
             letter-spacing: 2px;
-            text-transform: uppercase;
+            /* text-transform: uppercase; */
             color: #666;
             font-weight: 500;
         }
@@ -375,7 +411,7 @@
             font-family: 'Playfair Display', serif;
             font-size: 1.5rem;
             color: #8b6c42;
-            opacity: 0.4;
+            opacity: 0.7;
             font-weight: 700;
             width: 60px;
             height: 60px;
@@ -508,10 +544,12 @@
     <div id="particles-js"></div>
     <div class="countdown" id="countdown"></div>
     <div class="container">
+        <!-- <img src="./images/bg.jpg" class="background-image"> -->
+        <!-- <div class="watermark"></div> -->
         <div class="invitation-card">
             <!-- Front Card -->
             <div class="card-side card-front">
-                
+                <div class="watermark"></div>
                 <div class="decorative-border"></div>
                 <div class="decorative-corner corner-top-left"></div>
                 <div class="decorative-corner corner-top-right"></div>
@@ -523,10 +561,11 @@
                 <div class="floral-decoration floral-bottom-right"></div>
                 <div class="pattern-overlay"></div>
                 <div class="monogram">K&P</div>
-                
+                <br><br><br>
                 <div class="content">
+                    <p class="invitation-text fade-in fade-in-2">Please Join Us For An <br> Engagement of</p>
                     <h1 class="names fade-in fade-in-1">Kajal<br> &<br> Parikshit</h1>
-                    <p class="invitation-text fade-in fade-in-2">We're Getting Engaged</p>
+                    <p class="invitation-text fade-in fade-in-2">ON</p>
                     <p class="date fade-in fade-in-3">May 1st, 2025</p>
                     <button class="view-button fade-in fade-in-4" id="viewDetails">View Invitation Details</button>
                 </div>
@@ -538,6 +577,7 @@
             
             <!-- Back Card -->
             <div class="card-side card-back">
+                <div class="watermark"></div>
                 <button class="back-button" id="backButton">
                     <i class="fas fa-arrow-left"></i>
                 </button>
@@ -584,7 +624,7 @@
                                 <i class="fas fa-concierge-bell"></i>
                             </div>
                             <h3 class="details-title">RSVP</h3>
-                            <p class="details-value">By April 25th, 2025<br>Please confirm your attendance</p>
+                            <p class="details-value">By April 25th, 2025<br>Your Presence Will Make Our Day Even More<br> Special.</p>
                         </div>
                     </div>
                 </div>
