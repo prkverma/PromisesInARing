@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luxury Engagement Invitation</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #0a0a0a;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            
+        }
+        
+        .container {
+            perspective: 1500px;
+            width: 100%;
+            max-width: 600px;
+            height: 560px;
+            margin: 0 auto;
+        }
+        
+        .invitation-card {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.8s cubic-bezier(0.4, 0.0, 0.2, 1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+        }
+        
+        .card-side {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            background-color: #fff; /* Ensure solid background */
+        }
+        
+        .card-front {
+            color: #333;
+            text-align: center;
+            background-image: linear-gradient(rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.98)), url('/api/placeholder/600/400');
+            background-size: cover;
+            background-position: center;
+            border: 1px solid #e0e0e0;
+            z-index: 2; /* Ensure proper stacking */
+        }
+        
+        .card-back {
+            color: #333;
+            text-align: center;
+            border: 1px solid #e0e0e0;
+            transform: rotateY(180deg);
+            background: #fff;
+            z-index: 1; /* Ensure proper stacking */
+        }
+        
+        .content {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+        }
+        
+        .countdown {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #f8f1e4;
+            padding: 10px 15px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            color: #8b6c42;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e6d7c3;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+        
+        .names {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            color: #8b6c42;
+            font-weight: 600;
+            letter-spacing: 1px;
+            line-height: 1.1;
+        }
+        
+        .invitation-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #666;
+            font-weight: 500;
+        }
+        
+        .date {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.1rem;
+            margin-bottom: 2.5rem;
+            letter-spacing: 1px;
+            color: #8b6c42;
+            font-weight: 500;
+        }
+        
+        /* .view-button {
+            background: #8b6c42;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Montserrat', sans-serif;
+            letter-spacing: 1px;
+            font-weight: 500;
+            box-shadow: 0 2px 10px rgba(139, 108, 66, 0.2);
+        }
+        
+        .view-button:hover {
+            background: #75593a;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(139, 108, 66, 0.3);
+        } */
+        .view-button {
+  background: linear-gradient(145deg, #d4af37, #b18e2c);
+  color: #fff;
+  padding: 14px 34px;
+  border-radius: 30px;
+  font-family: 'Bellefair', serif;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 500;
+  box-shadow: 0 5px 15px rgba(177, 142, 44, 0.3), inset 0 1px 3px rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  cursor: pointer;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Add animated shine sweep effect */
+.view-button::after {
+  content: '';
+  position: absolute;
+  top: -110%;
+  left: -210%;
+  width: 200%;
+  height: 200%;
+  opacity: 0;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.1) 40%,
+    rgba(255, 255, 255, 0.3) 50%,
+    rgba(255, 255, 255, 0.1) 60%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: rotate(30deg);
+  animation: shineSweep 4s infinite;
+  pointer-events: none;
+}
+
+/* Define the shine sweep animation */
+@keyframes shineSweep {
+  0% {
+    opacity: 0;
+    left: -200%;
+  }
+  20% {
+    opacity: 0;
+  }
+  40% {
+    opacity: 1;
+    left: -100%;
+  }
+  60% {
+    opacity: 1;
+    left: 100%;
+  }
+  80% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+    left: -200%;
+  }
+}
+        
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: #f8f1e4;
+            border: 1px solid #e6d7c3;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 2;
+            color: #8b6c42;
+        }
+        
+        .back-button:hover {
+            background: #e6d7c3;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        }
+        
+        .flipped {
+            transform: rotateY(180deg);
+        }
+        
+        .details-item {
+            margin-bottom: 2rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+        
+        .details-item:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 30%;
+            width: 40%;
+            height: 1px;
+            background: #e6d7c3;
+        }
+        
+        .details-icon {
+            font-size: 1.3rem;
+            color: #8b6c42;
+            margin-bottom: 0.5rem;
+        }
+        
+        .details-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: #333;
+            font-weight: 600;
+        }
+        
+        .details-value {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .location-link {
+            color: #8b6c42;
+            text-decoration: none;
+            position: relative;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .location-link:hover {
+            color: #75593a;
+        }
+        
+        .location-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: #8b6c42;
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease;
+        }
+        
+        .location-link:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+        
+        .decorative-border {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            right: 15px;
+            bottom: 15px;
+            border: 1px solid #e6d7c3;
+            border-radius: 4px;
+            pointer-events: none;
+        }
+        
+        .decorative-corner {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            pointer-events: none;
+        }
+        
+        .corner-top-left {
+            top: 10px;
+            left: 10px;
+            border-top: 2px solid #8b6c42;
+            border-left: 2px solid #8b6c42;
+        }
+        
+        .corner-top-right {
+            top: 10px;
+            right: 10px;
+            border-top: 2px solid #8b6c42;
+            border-right: 2px solid #8b6c42;
+        }
+        
+        .corner-bottom-left {
+            bottom: 10px;
+            left: 10px;
+            border-bottom: 2px solid #8b6c42;
+            border-left: 2px solid #8b6c42;
+        }
+        
+        .corner-bottom-right {
+            bottom: 10px;
+            right: 10px;
+            border-bottom: 2px solid #8b6c42;
+            border-right: 2px solid #8b6c42;
+        }
+        
+        .monogram {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: #8b6c42;
+            opacity: 0.4;
+            font-weight: 700;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            border: 2px solid #8b6c42;
+            padding: 5px;
+            background: transparent;
+            z-index: 5;
+        }
+
+        .monogram::before {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            right: 3px;
+            bottom: 3px;
+            border: 1px solid rgba(139, 108, 66, 0.3);
+            border-radius: 50%;
+        }
+                
+        .card-footer {
+            position: absolute;
+            bottom: 15px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.8rem;
+            color: #999;
+            letter-spacing: 1px;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.8s ease forwards;
+            opacity: 0;
+        }
+        
+        .fade-in-1 { animation-delay: 0.1s; }
+        .fade-in-2 { animation-delay: 0.3s; }
+        .fade-in-3 { animation-delay: 0.5s; }
+        .fade-in-4 { animation-delay: 0.7s; }
+
+        /* Scrollbar styling for back content if needed */
+        .back-content {
+            width: 100%;
+            max-height: 100%;
+            overflow-y: auto;
+            padding-right: 5px;
+        }
+
+        .back-content::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        .back-content::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        .back-content::-webkit-scrollbar-thumb {
+            background: #d4c4a8;
+            border-radius: 10px;
+        }
+
+        .back-content::-webkit-scrollbar-thumb:hover {
+            background: #8b6c42;
+        }
+
+        /* Add subtle pattern to background */
+        .pattern-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0.03;
+            background-image: url('/api/placeholder/200/200');
+            background-repeat: repeat;
+            pointer-events: none;
+        }
+
+        /* Add subtle floral corner decorations */
+        .floral-decoration {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            opacity: 0.1;
+            background-size: contain;
+            background-repeat: no-repeat;
+            pointer-events: none;
+        }
+
+        .floral-top-left {
+            top: 10px;
+            left: 10px;
+            background-image: url('/api/placeholder/80/80');
+        }
+
+        .floral-top-right {
+            top: 10px;
+            right: 10px;
+            background-image: url('/api/placeholder/80/80');
+            transform: scaleX(-1);
+        }
+
+        .floral-bottom-left {
+            bottom: 10px;
+            left: 10px;
+            background-image: url('/api/placeholder/80/80');
+            transform: scaleY(-1);
+        }
+
+        .floral-bottom-right {
+            bottom: 10px;
+            right: 10px;
+            background-image: url('/api/placeholder/80/80');
+            transform: scale(-1);
+        }
+    </style>
+</head>
+<body>
+    <div id="particles-js"></div>
+    <div class="countdown" id="countdown"></div>
+    <div class="container">
+        <div class="invitation-card">
+            <!-- Front Card -->
+            <div class="card-side card-front">
+                
+                <div class="decorative-border"></div>
+                <div class="decorative-corner corner-top-left"></div>
+                <div class="decorative-corner corner-top-right"></div>
+                <div class="decorative-corner corner-bottom-left"></div>
+                <div class="decorative-corner corner-bottom-right"></div>
+                <div class="floral-decoration floral-top-left"></div>
+                <div class="floral-decoration floral-top-right"></div>
+                <div class="floral-decoration floral-bottom-left"></div>
+                <div class="floral-decoration floral-bottom-right"></div>
+                <div class="pattern-overlay"></div>
+                <div class="monogram">K&P</div>
+                
+                <div class="content">
+                    <h1 class="names fade-in fade-in-1">Keren<br> &<br> Peter</h1>
+                    <p class="invitation-text fade-in fade-in-2">We're Getting Engaged</p>
+                    <p class="date fade-in fade-in-3">May 1st, 2025</p>
+                    <button class="view-button fade-in fade-in-4" id="viewDetails">View Invitation Details</button>
+                </div>
+                
+                <div class="card-footer">
+                    With love & joy
+                </div>
+            </div>
+            
+            <!-- Back Card -->
+            <div class="card-side card-back">
+                <button class="back-button" id="backButton">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <div class="decorative-border"></div>
+                <div class="decorative-corner corner-top-left"></div>
+                <div class="decorative-corner corner-top-right"></div>
+                <div class="decorative-corner corner-bottom-left"></div>
+                <div class="decorative-corner corner-bottom-right"></div>
+                <div class="pattern-overlay"></div>
+                
+                <div class="back-content">
+                    <div class="content">
+                        <div class="details-item fade-in fade-in-1">
+                            <div class="details-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <h3 class="details-title">Venue</h3>
+                            <p class="details-value">
+                                <a href="https://maps.app.goo.gl/ptX5FB8EMCK3vNkQ8" class="location-link" target="_blank">
+                                    Hotel Yash Regency<br>
+                                    8 & 21, Marudhar Vihar, Khatipura, Jaipur, Rajasthan
+                                </a>
+                            </p>
+                        </div>
+                        
+                        <div class="details-item fade-in fade-in-2">
+                            <div class="details-icon">
+                                <i class="fas fa-calendar-alt"></i>
+                            </div>
+                            <h3 class="details-title">Date & Time</h3>
+                            <p class="details-value">May 1st, 2025<br>4:00 PM Onwards</p>
+                        </div>
+                        
+                        <!-- <div class="details-item fade-in fade-in-3">
+                            <div class="details-icon">
+                                <i class="fas fa-glass-cheers"></i>
+                            </div>
+                            <h3 class="details-title">Dress Code</h3>
+                            <p class="details-value">Formal Attire<br>Black Tie Preferred</p>
+                        </div> -->
+                        
+                        <div class="details-item fade-in fade-in-4">
+                            <div class="details-icon">
+                                <i class="fas fa-concierge-bell"></i>
+                            </div>
+                            <h3 class="details-title">RSVP</h3>
+                            <p class="details-value">By April 25th, 2025<br>Please confirm your attendance</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            particlesJS('particles-js', {
+                "particles": {
+                    "number": {
+                        "value": 80,
+                        "density": {
+                            "enable": true,
+                            "value_area": 800
+                        }
+                    },
+                    "color": {
+                        "value": ["#d4af37", "#e6be5a", "#9b7e51", "#ffd700"]
+                    },
+                    "shape": {
+                        "type": "circle",
+                        "stroke": {
+                            "width": 0,
+                            "color": "#000000"
+                        },
+                        "polygon": {
+                            "nb_sides": 5
+                        }
+                    },
+                    "opacity": {
+                        "value": 0.3,
+                        "random": true,
+                        "anim": {
+                            "enable": true,
+                            "speed": 0.5,
+                            "opacity_min": 0.1,
+                            "sync": false
+                        }
+                    },
+                    "size": {
+                        "value": 3,
+                        "random": true,
+                        "anim": {
+                            "enable": true,
+                            "speed": 2,
+                            "size_min": 0.3,
+                            "sync": false
+                        }
+                    },
+                    "line_linked": {
+                        "enable": false
+                    },
+                    "move": {
+                        "enable": true,
+                        "speed": 0.8,
+                        "direction": "none",
+                        "random": true,
+                        "straight": false,
+                        "out_mode": "out",
+                        "bounce": false,
+                        "attract": {
+                            "enable": false,
+                            "rotateX": 600,
+                            "rotateY": 1200
+                        }
+                    }
+                },
+                "interactivity": {
+                    "detect_on": "canvas",
+                    "events": {
+                        "onhover": {
+                            "enable": true,
+                            "mode": "bubble"
+                        },
+                        "onclick": {
+                            "enable": true,
+                            "mode": "push"
+                        },
+                        "resize": true
+                    },
+                    "modes": {
+                        "bubble": {
+                            "distance": 150,
+                            "size": 6,
+                            "duration": 2,
+                            "opacity": 0.6,
+                            "speed": 3
+                        },
+                        "push": {
+                            "particles_nb": 4
+                        }
+                    }
+                },
+                "retina_detect": true
+            });
+            
+
+            const viewDetailsBtn = document.getElementById('viewDetails');
+            const backButton = document.getElementById('backButton');
+            const card = document.querySelector('.invitation-card');
+            
+            // Countdown timer
+            const countdownElement = document.getElementById('countdown');
+            const targetDate = new Date('May 1, 2025 18:00:00').getTime();
+            
+            function updateCountdown() {
+                const now = new Date().getTime();
+                const distance = targetDate - now;
+                
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                
+                countdownElement.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+                
+                if (distance < 0) {
+                    clearInterval(countdownInterval);
+                    countdownElement.innerHTML = "It's happening now!";
+                }
+            }
+            
+            // Update countdown every second
+            updateCountdown();
+            const countdownInterval = setInterval(updateCountdown, 1000);
+            
+            // Card flip functionality with proper visibility
+            viewDetailsBtn.addEventListener('click', function() {
+                card.classList.add('flipped');
+            });
+            
+            backButton.addEventListener('click', function() {
+                card.classList.remove('flipped');
+            });
+
+            // Apply fade-in animations after a short delay
+            setTimeout(() => {
+                document.querySelectorAll('.fade-in').forEach(element => {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                });
+            }, 100);
+        });
+    </script>
+</body>
+</html>
