@@ -333,6 +333,7 @@
             position: relative;
             transition: all 0.3s ease;
             font-weight: 500;
+            padding-right: 30px;
         }
         
         .location-link:hover {
@@ -340,17 +341,46 @@
         }
         
         .location-link::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 100%;
-            height: 1px;
-            background: #8b6c42;
-            transform: scaleX(0);
-            transform-origin: right;
-            transition: transform 0.3s ease;
+            content: "Click!";
+    position: absolute;
+    right: 0;
+    top: 0;
+    background-color: #ff5a5f;
+    color: white;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 3px 6px;
+    border-radius: 10px;
+    animation: bounce 2s infinite;
+    transform-origin: center bottom;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
+
+        @keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0) scale(1);
+    }
+    40% {
+        transform: translateY(-10px) scale(1.1);
+    }
+    60% {
+        transform: translateY(-5px) scale(1.05);
+    }
+}
+
+@media (max-width: 768px) {
+    .location-link {
+        padding-right: 0; /* Remove right padding on mobile */
+        padding-bottom: 20px; /* Add bottom padding instead */
+    }
+    
+    .location-link::after {
+        right: auto; /* Reset right positioning */
+        top: 70%; /* Position below the text */
+        
+        margin-top: 3px; /* Small gap between text and indicator */
+    }
+}
         
         .location-link:hover::after {
             transform: scaleX(1);
@@ -538,6 +568,130 @@
             background-image: url('/api/placeholder/80/80');
             transform: scale(-1);
         }
+
+    </style>
+    <style>
+        /* Make font sizes and container layout responsive */
+@media (max-width: 768px) {
+    /* body {
+        padding: 10px;
+        align-items: flex-start;
+        overflow-y: auto;
+    }
+
+    .container {
+        height: auto;
+        max-height: 100%;
+    }
+
+    .invitation-card {
+        height: auto;
+        min-height: 550px;
+    } */
+
+    .card-side {
+        padding: 1rem;
+    }
+
+    .names {
+        font-size: 2.2rem;
+    }
+
+    .invitation-text {
+        font-size: 1.3rem;
+    }
+
+    .date {
+        font-size: 1rem;
+    }
+
+    .view-button {
+        padding: 10px 24px;
+        font-size: 0.85rem;
+    }
+
+    .back-button {
+        width: 35px;
+        height: 35px;
+        font-size: 0.9rem;
+    }
+
+    .details-title {
+        font-size: 1.1rem;
+    }
+
+    .details-value {
+        font-size: 0.95rem;
+    }
+
+    .countdown {
+        font-size: 0.75rem;
+        padding: 8px 12px;
+    }
+
+    .monogram {
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+    }
+
+    .floral-decoration {
+        width: 50px;
+        height: 50px;
+    }
+
+    .decorative-corner {
+        width: 30px;
+        height: 30px;
+    }
+
+    .card-footer {
+        font-size: 0.7rem;
+    }
+
+    .details-item:not(:last-child)::after {
+        left: 20%;
+        width: 60%;
+    }
+}
+
+@media (max-width: 480px) {
+    .names {
+        font-size: 1.8rem;
+    }
+
+    .invitation-text {
+        font-size: 1.1rem;
+    }
+
+    .date {
+        font-size: 0.95rem;
+    }
+
+    .view-button {
+        font-size: 0.8rem;
+        padding: 8px 20px;
+    }
+
+    .details-title {
+        font-size: 1rem;
+    }
+
+    .details-value {
+        font-size: 0.9rem;
+    }
+
+    .card-footer {
+        font-size: 0.65rem;
+    }
+
+    .monogram {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+}
+
     </style>
 </head>
 <body>
@@ -560,11 +714,11 @@
                 <div class="floral-decoration floral-bottom-left"></div>
                 <div class="floral-decoration floral-bottom-right"></div>
                 <div class="pattern-overlay"></div>
-                <div class="monogram">K&P</div>
+                <div class="monogram">P&K</div>
                 <br><br><br>
                 <div class="content">
                     <p class="invitation-text fade-in fade-in-2">Please Join Us For An <br> Engagement of</p>
-                    <h1 class="names fade-in fade-in-1">Kajal<br> &<br> Parikshit</h1>
+                    <h1 class="names fade-in fade-in-1">Parikshit<br> &<br> Kajal </h1>
                     <p class="invitation-text fade-in fade-in-2">ON</p>
                     <p class="date fade-in fade-in-3">May 1st, 2025</p>
                     <button class="view-button fade-in fade-in-4" id="viewDetails">View Invitation Details</button>
@@ -611,13 +765,6 @@
                             <p class="details-value">May 1st, 2025<br>4:00 PM Onwards</p>
                         </div>
                         
-                        <!-- <div class="details-item fade-in fade-in-3">
-                            <div class="details-icon">
-                                <i class="fas fa-glass-cheers"></i>
-                            </div>
-                            <h3 class="details-title">Dress Code</h3>
-                            <p class="details-value">Formal Attire<br>Black Tie Preferred</p>
-                        </div> -->
                         
                         <div class="details-item fade-in fade-in-4">
                             <div class="details-icon">
