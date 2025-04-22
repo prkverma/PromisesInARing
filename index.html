@@ -472,7 +472,7 @@
             left: 0;
             width: 100%;
             text-align: center;
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Playfair Display', sans-serif;
             font-size: 0.8rem;
             color: #999;
             letter-spacing: 1px;
@@ -708,8 +708,8 @@
                     <button class="view-button fade-in fade-in-4" id="viewDetails">View Invitation Details</button>
                 </div>
                 
-                <div class="card-footer">
-                    With love & joy
+                <div class="card-footer" id="typing-text">
+                    
                 </div>
             </div>
             
@@ -771,7 +771,21 @@
         console.log('Playback failed:', err);
     });
 });
- 
+ window.onload = function() {
+    const text = "With love & joy";
+    const target = document.getElementById("typing-text");
+    let i = 0;
+
+    function type() {
+        if (i < text.length) {
+            target.innerHTML += text.charAt(i);
+            i++;
+            setTimeout(type, 100); // Adjust typing speed here
+        }
+    }
+
+    type();
+};
     </script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
